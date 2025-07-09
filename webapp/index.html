@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid-19 Data Analyse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+            min-height: 100vh;
+        }
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+        .subtitle {
+            text-align: center;
+            color: #374151;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        .gorsel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .gorsel-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(30, 41, 59, 0.10), 0 1.5px 4px rgba(30,41,59,0.07);
+            padding: 24px 18px 18px 18px;
+            text-align: center;
+            transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+            cursor: pointer;
+            position: relative;
+        }
+        .gorsel-card:hover {
+            transform: scale(1.045);
+            box-shadow: 0 8px 32px rgba(30, 41, 59, 0.18), 0 2px 8px rgba(30,41,59,0.10);
+            z-index: 2;
+        }
+        .gorsel-card img {
+            max-width: 100%;
+            max-height: 320px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 1.5px 8px rgba(30,41,59,0.07);
+            object-fit: contain;
+            background: #f3f4f6;
+        }
+        .gorsel-title {
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #263159;
+            margin-bottom: 0;
+        }
+        .csv-section {
+            margin: 60px auto 0 auto;
+            max-width: 500px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(30,41,59,0.08);
+            padding: 32px 24px 28px 24px;
+            text-align: center;
+        }
+        .csv-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 18px;
+        }
+        .csv-section p {
+            color: #374151;
+            margin-bottom: 22px;
+        }
+        .csv-download-btn {
+            font-size: 1.1rem;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
+            color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+            transition: background 0.18s;
+        }
+        .csv-download-btn:hover {
+            background: linear-gradient(90deg, #3949ab 0%, #1a237e 100%);
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .main-title { font-size: 2rem; }
+            .gorsel-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-title">Covid 19 Data Analyse</div>
+        <div class="subtitle">Analiz görselleri ve veri setleri</div>
+
+        <div class="gorsel-grid">
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/worldometer_top_cases.png" alt="En Çok Vaka Görülen 10 Ülke">
+                <div class="gorsel-title">En Çok Vaka Görülen 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/worldometer_top_deaths.png" alt="En Çok Ölüm Görülen 10 Ülke">
+                <div class="gorsel-title">En Çok Ölüm Görülen 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/worldometer_continent_cases.png" alt="Kıta Bazında Toplam Vaka">
+                <div class="gorsel-title">Kıta Bazında Toplam Vaka</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/worldometer_continent_deaths.png" alt="Kıta Bazında Toplam Ölüm">
+                <div class="gorsel-title">Kıta Bazında Toplam Ölüm</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_1_gunluk_yeni_vaka.png" alt="Günlük Yeni Vaka Sayısı">
+                <div class="gorsel-title">Günlük Yeni Vaka Sayısı</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_2_gunluk_yeni_olum.png" alt="Günlük Yeni Ölüm Sayısı">
+                <div class="gorsel-title">Günlük Yeni Ölüm Sayısı</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_3_kita_vaka_pasta.png" alt="Kıtalara Göre Toplam Vaka Dağılımı">
+                <div class="gorsel-title">Kıtalara Göre Toplam Vaka Dağılımı</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_4_kita_olum_pasta.png" alt="Kıtalara Göre Toplam Ölüm Dağılımı">
+                <div class="gorsel-title">Kıtalara Göre Toplam Ölüm Dağılımı</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_5_en_cok_test_yapan_ulkeler.png" alt="En Çok Test Yapan 10 Ülke">
+                <div class="gorsel-title">En Çok Test Yapan 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_6_en_yuksek_aktif_vaka.png" alt="En Yüksek Aktif Vaka Sayısına Sahip 10 Ülke">
+                <div class="gorsel-title">En Yüksek Aktif Vaka Sayısına Sahip 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_7_iyilesme_orani_top10.png" alt="İyileşme Oranı En Yüksek 10 Ülke">
+                <div class="gorsel-title">İyileşme Oranı En Yüksek 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_8_haftalik_vaka_artis_orani.png" alt="Haftalık Yeni Vaka Artış Oranı En Yüksek 10 Ülke">
+                <div class="gorsel-title">Haftalık Yeni Vaka Artış Oranı En Yüksek 10 Ülke</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_9_usa_county_top10.png" alt="ABD’de En Çok Vaka Görülen 10 County">
+                <div class="gorsel-title">ABD’de En Çok Vaka Görülen 10 County</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/gorsel_10_zaman_serisi_karsilastirma.png" alt="Zaman İçinde Toplam Vaka, Ölüm ve İyileşenler">
+                <div class="gorsel-title">Zaman İçinde Toplam Vaka, Ölüm ve İyileşenler</div>
+            </div>
+            <div class="gorsel-card">
+                <img src="../analiz_ciktisi/worldometer_death_rate_top10.png" alt="Ölüm Oranı En Yüksek 10 Ülke">
+                <div class="gorsel-title">Ölüm Oranı En Yüksek 10 Ülke</div>
+            </div>
+        </div>
+
+        <div class="csv-section">
+            <h3>Kullanılan Veri Setleri</h3>
+            <p>Tüm veri setlerini tek bir zip dosyası olarak indirebilirsiniz.</p>
+            <a href="../covid19_veri_setleri.zip" class="csv-download-btn" download>CSV'leri ZIP Olarak İndir</a>
+        </div>
+    </div>
+</body>
+</html> 
